@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS wallet_links (
         CHECK (
             length(wallet_address) = 42
             AND substr(wallet_address, 1, 2) = '0x'
-            AND wallet_address NOT GLOB '*[^0-9a-fA-Fx]*'
+            AND substr(wallet_address, 3) NOT GLOB '*[^0-9a-fA-F]*'
         ),
     network TEXT NOT NULL,
     created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
