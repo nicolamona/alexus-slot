@@ -244,8 +244,12 @@ function spin(){
     status.textContent = "● Conectado";
     message.textContent = "Perfil sincronizado en modo de solo lectura.";
   } catch (error) {
-    status.textContent = "Conexión no disponible";
-    message.textContent = "No se pudo verificar el perfil. Probá nuevamente más tarde.";
+    const detail = error instanceof Error ? error.message : String(error);
+    status.textContent = detail.startsWith("HTTP ") ? detail : "Error de conexión";
+    message.textContent = detail.startsWith("HTTP ")
+      ? "El servidor respondió, pero no pudo completar la consulta del perfil."
+      : "No se pudo completar la consulta. Diagnóstico: " + detail;
+    console.error("Alexus profile error:", error);
   }
 })();
 </script>
