@@ -69,7 +69,7 @@ button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--
 <section class="wallet-panel" aria-labelledby="walletTitle">
 <div class="wallet-head"><div><div class="kicker">WEB3 / FUTURE INTEGRATION</div><div class="wallet-title" id="walletTitle" style="margin-top:12px">Wallet &amp; WLD</div><div class="wallet-sub">Panel de preparación para World Chain. La conexión de wallets y las operaciones on-chain todavía no están activadas; el saldo de práctica permanece separado.</div></div><div class="wallet-state">● MODO PREPARACIÓN · INACTIVO</div></div>
 <div class="wallet-grid">
-<div class="wallet-item"><div class="wallet-label">Red prevista</div><div class="wallet-value">World Chain</div><div class="wallet-address">Activo previsto: WLD · moneda nativa del panel pendiente de validación técnica.</div><div class="wallet-actions"><button class="wallet-btn" type="button" disabled>METAMASK · PRÓXIMAMENTE</button><button class="wallet-btn" type="button" disabled>WALLETCONNECT · PRÓXIMAMENTE</button></div></div>
+<div class="wallet-item"><div class="wallet-label">Vincular dirección de origen</div><div class="wallet-value">Tu wallet · World Chain</div><div class="wallet-address">Ingresá la dirección pública desde la que enviás. Nunca ingreses tu frase semilla ni clave privada.</div><label for="playerWallet" class="wallet-label" style="display:block;margin-top:13px">Dirección 0x…</label><input id="playerWallet" type="text" inputmode="text" autocomplete="off" spellcheck="false" maxlength="42" placeholder="0x..." style="display:block;width:100%;margin-top:7px;padding:12px;border:1px solid #ffffff2b;background:#070812;color:#f5f4fb;font:11px 'DM Mono',monospace;border-radius:2px"><div class="wallet-actions"><button class="wallet-btn gold" type="button" id="savePlayerWallet">GUARDAR EN ESTE DISPOSITIVO</button><button class="wallet-btn" type="button" id="clearPlayerWallet">DESVINCULAR</button></div><div id="playerWalletStatus" class="wallet-feedback" aria-live="polite"></div></div>
 <div class="wallet-item"><div class="wallet-label">Dirección receptora indicada</div><div class="wallet-address">0x5309802cdd7436a803275e4c778967fe85813566</div><div class="wallet-actions"><button class="wallet-btn gold" type="button" data-copy="0x5309802cdd7436a803275e4c778967fe85813566">COPIAR DIRECCIÓN</button></div></div>
 <div class="wallet-item"><div class="wallet-label">Contrato WLD indicado · sin verificar</div><div class="wallet-address">0x2cFc85d8E48F8EAB294be644d9E25C3030863003</div><div class="wallet-actions"><button class="wallet-btn" type="button" data-copy="0x2cFc85d8E48F8EAB294be644d9E25C3030863003">COPIAR CONTRATO</button></div></div>
 <div class="wallet-item"><div class="wallet-label">Depósitos on-chain</div><div class="wallet-value">Desactivados</div><div class="wallet-address">No se envían transacciones ni se aceptan depósitos o retiros desde esta interfaz.</div><div class="wallet-actions"><button class="wallet-btn" type="button" disabled>DEPOSITAR WLD · DESACTIVADO</button></div></div>
@@ -101,6 +101,26 @@ button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--
   return {name:"Constelación descubierta",special:false};
  }
  function addHistory(a,label){history.unshift({symbols:a.join(" "),label});history=history.slice(0,4);$("history").innerHTML=history.map(h=>'<div class="history-item"><span>'+h.symbols+'<br><span style="color:#888ea7">'+h.label+'</span></span><strong>✧</strong></div>').join("");}
+ const walletInput=$("playerWallet"),walletStatus=$("playerWalletStatus");
+ const WALLET_KEY="alexus_player_wallet_v1";
+ const normalizeAddress=value=>value.trim();
+ const isWalletAddress=value=>/^0x[a-fA-F0-9]{40}$/.test(value);
+ try{const savedWallet=localStorage.getItem(WALLET_KEY)||"";if(walletInput)walletInput.value=savedWallet;if(savedWallet&&walletStatus)walletStatus.textContent="Dirección guardada localmente en este navegador.";}catch(_){}
+ $("savePlayerWallet")?.addEventListener("click",()=>{
+  const address=normalizeAddress(walletInput?.value||"");
+  if(!isWalletAddress(address)){walletStatus.textContent="Dirección inválida. Pegá una dirección EVM completa de 42 caracteres.";return;}
+  try{localStorage.setItem(WALLET_KEY,address);walletStatus.textContent="Dirección guardada en este dispositivo. Todavía no está vinculada a una cuenta ni sincronizada con un servidor.";}
+  catch(_){walletStatus.textContent="No se pudo guardar en este navegador.";}
+ });
+ $("clearPlayerWallet")?.addEventListener("click",()=>{
+  try{localStorage.removeItem(WALLET_KEY);if(walletInput)walletInput.value="";walletStatus.textContent="Dirección eliminada de este dispositivo.";}
+  catch(_){walletStatus.textContent="No se pudo eliminar la dirección local.";}
+ });
+ document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{
+  const value=btn.getAttribute("data-copy"),feedback=$("walletFeedback");
+  try{await navigator.clipboard.writeText(value);feedback.textContent="Dirección copiada.";}
+  catch(_){feedback.textContent="No se pudo copiar automáticamente. Mantené pulsada la dirección para copiarla.";}
+ }));
  $("spin").addEventListener("click",()=>{if(busy)return;busy=true;plays++;paint();$("result").className="result";$("result").textContent="GENERANDO CONSTELACIÓN…";
  const reels=[0,1,2].map(i=>$("reel"+i));reels.forEach(r=>{r.classList.remove("celebrate");r.classList.add("spinning")});let ticks=0;
  const timer=setInterval(()=>{reels.forEach(r=>r.querySelector(".symbol").textContent=draw());ticks++;if(ticks>=15){clearInterval(timer);const result=[draw(),draw(),draw()];reels.forEach((r,i)=>{r.classList.remove("spinning");r.querySelector(".symbol").textContent=result[i]});const combo=describe(result);if(combo.special)reels.forEach(r=>r.classList.add("celebrate"));if(!discoveries.includes(combo.name)&&discoveries.length<7)discoveries.push(combo.name);busy=false;paint();addHistory(result,combo.name);
