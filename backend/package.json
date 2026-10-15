@@ -1,0 +1,10 @@
+{
+  "name": "alexus-wallet-link-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Demo-only authenticated wallet-link API for Alexus Mini App",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "test": "node --test" },
+  "engines": { "node": ">=20" },
+  "dependencies": { "better-sqlite3": "^11.8.1", "express": "^4.21.2" }
+}
