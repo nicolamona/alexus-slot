@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070812"><meta name="description" content="Alexus Casino — experiencia visual de tragamonedas en modo demo.">
+<meta name="alexus-api-base" content="">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <title>ALEXUS CASINO — Beyond the ordinary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -103,19 +105,50 @@ button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--
  function addHistory(a,label){history.unshift({symbols:a.join(" "),label});history=history.slice(0,4);$("history").innerHTML=history.map(h=>'<div class="history-item"><span>'+h.symbols+'<br><span style="color:#888ea7">'+h.label+'</span></span><strong>✧</strong></div>').join("");}
  const walletInput=$("playerWallet"),walletStatus=$("playerWalletStatus");
  const WALLET_KEY="alexus_player_wallet_v1";
+ const API_BASE=(document.querySelector('meta[name="alexus-api-base"]')?.content||"").trim().replace(/\/+$/,"");
  const normalizeAddress=value=>value.trim();
  const isWalletAddress=value=>/^0x[a-fA-F0-9]{40}$/.test(value);
- try{const savedWallet=localStorage.getItem(WALLET_KEY)||"";if(walletInput)walletInput.value=savedWallet;if(savedWallet&&walletStatus)walletStatus.textContent="Dirección guardada localmente en este navegador.";}catch(_){}
- $("savePlayerWallet")?.addEventListener("click",()=>{
+ const telegramInitData=()=>window.Telegram?.WebApp?.initData||"";
+ const apiRequest=async(path,options={})=>{
+  const initData=telegramInitData();
+  if(!initData)throw new Error("Abrí Alexus desde Telegram para identificar tu cuenta.");
+  const response=await fetch(API_BASE+path,{...options,headers:{"Content-Type":"application/json","X-Telegram-Init-Data":initData,...(options.headers||{})}});
+  const payload=await response.json().catch(()=>({}));
+  if(!response.ok)throw new Error(payload.error||("Error del servidor ("+response.status+")."));
+  return payload;
+ };
+ async function loadWallet(){
+  if(!API_BASE){
+   try{const savedWallet=localStorage.getItem(WALLET_KEY)||"";if(walletInput)walletInput.value=savedWallet;if(savedWallet&&walletStatus)walletStatus.textContent="Dirección guardada localmente en este navegador; aún no sincronizada.";}catch(_){}
+   return;
+  }
+  try{
+   const data=await apiRequest("/api/wallet");
+   if(walletInput)walletInput.value=data.wallet?.address||"";
+   walletStatus.textContent=data.wallet?"Dirección vinculada a tu cuenta de Telegram.":"Todavía no vinculaste una dirección.";
+  }catch(error){walletStatus.textContent=error.message+" La vinculación con servidor requiere configurar la API.";}
+ }
+ $("savePlayerWallet")?.addEventListener("click",async()=>{
   const address=normalizeAddress(walletInput?.value||"");
   if(!isWalletAddress(address)){walletStatus.textContent="Dirección inválida. Pegá una dirección EVM completa de 42 caracteres.";return;}
-  try{localStorage.setItem(WALLET_KEY,address);walletStatus.textContent="Dirección guardada en este dispositivo. Todavía no está vinculada a una cuenta ni sincronizada con un servidor.";}
+  if(API_BASE){
+   try{await apiRequest("/api/wallet",{method:"PUT",body:JSON.stringify({address,network:"worldchain"})});walletStatus.textContent="Dirección guardada en tu cuenta de Telegram.";}
+   catch(error){walletStatus.textContent=error.message;}
+   return;
+  }
+  try{localStorage.setItem(WALLET_KEY,address);walletStatus.textContent="Guardada solo en este dispositivo. Para sincronizarla, hay que desplegar y configurar el backend.";}
   catch(_){walletStatus.textContent="No se pudo guardar en este navegador.";}
  });
- $("clearPlayerWallet")?.addEventListener("click",()=>{
+ $("clearPlayerWallet")?.addEventListener("click",async()=>{
+  if(API_BASE){
+   try{await apiRequest("/api/wallet",{method:"DELETE"});if(walletInput)walletInput.value="";walletStatus.textContent="Dirección desvinculada de tu cuenta.";}
+   catch(error){walletStatus.textContent=error.message;}
+   return;
+  }
   try{localStorage.removeItem(WALLET_KEY);if(walletInput)walletInput.value="";walletStatus.textContent="Dirección eliminada de este dispositivo.";}
   catch(_){walletStatus.textContent="No se pudo eliminar la dirección local.";}
  });
+ loadWallet();
  document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{
   const value=btn.getAttribute("data-copy"),feedback=$("walletFeedback");
   try{await navigator.clipboard.writeText(value);feedback.textContent="Dirección copiada.";}
@@ -125,7 +158,6 @@ button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--
  const reels=[0,1,2].map(i=>$("reel"+i));reels.forEach(r=>{r.classList.remove("celebrate");r.classList.add("spinning")});let ticks=0;
  const timer=setInterval(()=>{reels.forEach(r=>r.querySelector(".symbol").textContent=draw());ticks++;if(ticks>=15){clearInterval(timer);const result=[draw(),draw(),draw()];reels.forEach((r,i)=>{r.classList.remove("spinning");r.querySelector(".symbol").textContent=result[i]});const combo=describe(result);if(combo.special)reels.forEach(r=>r.classList.add("celebrate"));if(!discoveries.includes(combo.name)&&discoveries.length<7)discoveries.push(combo.name);busy=false;paint();addHistory(result,combo.name);
  $("result").className=combo.special?"result win":"result";$("result").textContent=(combo.special?"✦ SECUENCIA ESPECIAL · ":"SECUENCIA EXPLORADA · ")+combo.name.toUpperCase()+". "+(discoveries.length>=5?"DESAFÍO COMPLETADO.":"PROBÁ OTRA COMBINACIÓN.");setTimeout(()=>reels.forEach(r=>r.classList.remove("celebrate")),1500)}},65);
- document.querySelectorAll("[data-copy]").forEach(btn=>btn.addEventListener("click",async()=>{const value=btn.getAttribute("data-copy");const feedback=$("walletFeedback");try{await navigator.clipboard.writeText(value);feedback.textContent="Dirección copiada."; }catch(_){feedback.textContent="No se pudo copiar automáticamente. Mantené pulsada la dirección para copiarla.";}}));
  });paint();
 })();
 </script></body></html>
