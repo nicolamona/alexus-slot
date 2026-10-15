@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#090910">
+<meta name="theme-color" content="#080b12">
 <meta name="description" content="Alexus Casino — experiencia de tragamonedas futurista en modo demo.">
-<title>Alexus Casino | Neon Royale</title>
+<title>Alexus | Prism Arcade</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -58,6 +58,103 @@ body:before{opacity:.24;background-size:26px 26px;mask-image:linear-gradient(to 
 .info-card{border-radius:5px}.notice{border-radius:4px;border-color:#5ef5dc44;background:#5ef5dc09}
 @media(max-width:680px){.hero{text-align:left;padding-top:32px}.hero h1{letter-spacing:-1.8px}}
 
+
+/* ALEXUS // PRISM ARCADE — visual overhaul */
+:root{color-scheme:dark;--bg:#070910;--panel:#101522;--panel2:#171e2d;--gold:#d5ff55;--gold2:#efffc1;--violet:#9b8cff;--cyan:#5cf2e3;--muted:#9aa6bd;--line:#aab8d522;--green:#d5ff55}
+html{background:#070910}
+body{font-family:"Space Grotesk",system-ui,sans-serif;background:radial-gradient(ellipse at 50% -15%,#30316a 0%,transparent 43%),radial-gradient(ellipse at 100% 40%,#125d6440 0%,transparent 32%),radial-gradient(ellipse at 0% 75%,#7d4eff20 0%,transparent 35%),#070910;color:#f6f7ff}
+body:before{opacity:.18;background-image:linear-gradient(#a8b5ff0a 1px,transparent 1px),linear-gradient(90deg,#a8b5ff0a 1px,transparent 1px);background-size:34px 34px}
+.app{max-width:1080px;padding-top:25px}
+.topbar{border-bottom:1px solid #b4c0ff20;padding-bottom:21px}
+.brandmark{width:48px;height:48px;border-radius:15px;transform:none;background:linear-gradient(145deg,#e8ff9b,#c8f94d 44%,#8c7bff);box-shadow:0 0 0 5px #cfff5010,0 9px 28px #8c7bff35;color:#10131c;font-size:21px}
+.brandname{font-size:17px;letter-spacing:2px}.brandname span{color:var(--gold)}
+.brandtag{letter-spacing:2.8px;color:#8995b2}
+.demo-pill{border:1px solid #d5ff5550;background:#d5ff550c;color:#eaffb2;border-radius:99px}
+.online-pill{border-radius:99px;background:#ffffff06}
+.hero{text-align:center;max-width:760px;margin:auto;padding:48px 0 18px}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #5cf2e333;background:#5cf2e30b;border-radius:99px;padding:9px 14px;letter-spacing:2.4px;color:#8df9ec}
+.hero h1{font-size:clamp(32px,6vw,62px);line-height:1.06;letter-spacing:-2.8px;margin:19px 0 13px}
+.hero h1 .shine{background:linear-gradient(100deg,#f8faff 5%,#d5ff55 43%,#8b9aff 72%,#5cf2e3);-webkit-background-clip:text;background-clip:text}
+.hero p{font-size:14px;color:#a8b1c8;max-width:540px}
+.dashboard{gap:12px;margin:25px 0}
+.stat{position:relative;overflow:hidden;border-radius:17px;border:1px solid #aab8d522;background:linear-gradient(145deg,#171d2beF,#0d111bee);box-shadow:0 12px 35px #0002,inset 0 1px #ffffff0b;padding:18px 19px}
+.stat:after{content:"";position:absolute;right:-35px;top:-55px;width:110px;height:110px;border-radius:50%;background:#8c7bff13;filter:blur(4px);pointer-events:none}
+.stat:nth-child(2){border-color:#d5ff5545;background:linear-gradient(145deg,#1c241cee,#0d1319ee)}
+.stat-label{letter-spacing:1.4px;color:#a0abc2}
+.stat-value{font-size:clamp(16px,2.4vw,23px);letter-spacing:-.7px}
+.stat-value small{color:#d5ff55;font-size:10px}
+.game-shell{max-width:820px;border-radius:27px;padding:1px;background:linear-gradient(135deg,#e5ff8b,#6c74ff 35%,#5cf2e3 68%,#8b70ff);box-shadow:0 28px 90px #0008,0 0 65px #7c70ff16}
+.game-inner{border-radius:26px;padding:25px 27px 22px;background:radial-gradient(ellipse at 50% 0%,#292846 0%,transparent 58%),linear-gradient(155deg,#141a29,#0a0e17 65%,#11101e)}
+.game-inner:before{top:-150px;left:25%;width:50%;height:220px;background:#5cf2e315;filter:blur(65px)}
+.game-title{font-size:12px;letter-spacing:2px;color:#f0f2ff}
+.game-title span{color:#d5ff55}
+.jackpot{border:1px solid #d5ff5550;border-radius:99px;background:#d5ff550c;color:#eaffb4;font-size:9px;letter-spacing:1.1px}
+.machine{max-width:660px;margin:25px auto 19px;padding:9px;border-radius:23px;background:linear-gradient(135deg,#d5ff55,#8e80ff 38%,#5cf2e3 73%,#b7a5ff);box-shadow:0 18px 45px #0009,0 0 30px #8e80ff16}
+.machine:before{inset:3px;border-radius:20px;border:1px solid #ffffff8a}
+.reels{gap:11px;padding:13px;border-radius:17px;background:linear-gradient(160deg,#1d2438,#080b12);box-shadow:inset 0 8px 22px #000b,inset 0 0 0 1px #ffffff0b}
+.reel{height:clamp(98px,16vw,140px);border-radius:14px;background:linear-gradient(160deg,#f9fbff,#dbe4f3 48%,#aab8d3);box-shadow:inset 0 0 0 1px #fff, inset 0 -10px 22px #7784a733,0 7px 0 #6f64b4,0 12px 18px #0007;transition:transform .2s}
+.reel:after{background:linear-gradient(180deg,#ffffffd9,transparent 19%,transparent 76%,#8c9cbe55)}
+.symbol{font-size:clamp(43px,8vw,70px);filter:drop-shadow(0 7px 3px #18203945);transform:translateY(-1px)}
+.reel.spinning .symbol{animation:prismRoll .11s linear infinite}
+@keyframes prismRoll{0%{transform:translateY(-15px) scale(.94);filter:blur(3px)}100%{transform:translateY(15px) scale(1.02);filter:blur(1px)}}
+.machine-foot{padding:12px 8px 3px;color:#d7e2ff;font-size:9px;letter-spacing:2px}
+.controls{gap:13px}
+.betbox{border-radius:14px;border:1px solid #aab8d52c;background:linear-gradient(145deg,#ffffff09,#ffffff03);padding:13px 16px}
+.bet-label{color:#a5afc6;letter-spacing:1.2px}
+.bet-number{color:#f7f8ff;font-size:18px}
+.stepper button{width:34px;height:34px;border-radius:10px;border:1px solid #aab8d538;background:#ffffff0a;color:#eaf0ff;transition:background .15s,transform .15s}
+.stepper button:hover{background:#8c80ff2c;transform:translateY(-1px)}
+.spin-btn{position:relative;overflow:hidden;border:1px solid #efffc1;border-radius:14px;padding:16px;background:linear-gradient(110deg,#eaff9b,#d5ff55 52%,#a8ef63);color:#10151a;font-size:13px;letter-spacing:1.6px;box-shadow:0 8px 0 #647d2a,0 14px 28px #a7ed4a20;transition:transform .16s,box-shadow .16s,filter .16s}
+.spin-btn:before{content:"";position:absolute;top:-60%;left:-30%;width:25%;height:220%;transform:rotate(25deg);background:#ffffff80;filter:blur(8px);transition:left .45s}
+.spin-btn:hover{transform:translateY(-2px);box-shadow:0 10px 0 #647d2a,0 20px 32px #a7ed4a27;filter:brightness(1.04)}
+.spin-btn:hover:before{left:115%}
+.spin-btn:active{transform:translateY(3px);box-shadow:0 4px 0 #647d2a}
+.spin-btn:disabled{opacity:.48;filter:grayscale(.35);box-shadow:none}
+.result{min-height:30px;padding-top:17px;color:#b9c5dc;font-size:12px;letter-spacing:.15px}
+.result.win{color:#eaffad;text-shadow:0 0 22px #d5ff5540}
+.result.loss{color:#aab4cb}
+.below{gap:13px}
+.info-card{border-radius:17px;border:1px solid #aab8d522;background:linear-gradient(145deg,#151b29eF,#0c1019ef);box-shadow:0 12px 35px #0002;padding:19px 21px}
+.card-head{color:#dce3f8;letter-spacing:1.6px}
+.payline{border-color:#ffffff0d;color:#b5bfd5;padding:9px 0}
+.payline strong{color:#eaffad}
+.history-item{border-color:#ffffff0d;color:#c4cce0}
+.history-item strong{color:#d5ff55}
+.history-item strong.down{color:#ff9eae}
+.notice{border-radius:13px;border:1px solid #5cf2e328;background:#5cf2e308;color:#9eabc2;padding:14px 18px}
+.notice strong{color:#7ef5e7}
+footer{color:#77819a}
+.footer-brand{color:#d5ff55;letter-spacing:2.5px}
+@media(max-width:680px){
+ .app{padding:13px 12px 25px}
+ .topbar{padding-bottom:16px}
+ .brandmark{width:40px;height:40px;border-radius:13px}
+ .brandname{font-size:14px;letter-spacing:1.5px}
+ .brandtag{font-size:8px;letter-spacing:2px}
+ .hero{padding:34px 0 12px;text-align:center}
+ .hero h1{font-size:clamp(31px,9vw,47px);letter-spacing:-1.8px;margin:17px 0 11px}
+ .hero p{font-size:12px;line-height:1.65;padding:0 5px}
+ .dashboard{gap:8px;margin:17px 0}
+ .stat{padding:13px;border-radius:13px}
+ .stat-value{font-size:17px}
+ .game-inner{padding:17px 11px 17px;border-radius:24px}
+ .game-shell{border-radius:25px}
+ .game-title{font-size:10px;letter-spacing:1.2px}
+ .jackpot{font-size:8px;padding:8px 10px}
+ .machine{margin:20px auto 17px;padding:7px;border-radius:18px}
+ .machine:before{border-radius:15px}
+ .reels{gap:6px;padding:8px;border-radius:12px}
+ .reel{height:clamp(87px,25vw,112px);border-radius:10px}
+ .symbol{font-size:clamp(39px,12vw,52px)}
+ .machine-foot{font-size:8px;letter-spacing:1.1px;padding:10px 4px 2px}
+ .controls{grid-template-columns:1fr;gap:10px}
+ .betbox{padding:12px 14px}
+ .spin-btn{min-height:54px}
+ .below{grid-template-columns:1fr;gap:10px}
+ .info-card{padding:16px;border-radius:14px}
+}
+@media(prefers-reduced-motion:reduce){.spin-btn,.stepper button{transition:none}.spin-btn:before{display:none}}
+
 </style>
 </head>
 <body>
@@ -99,7 +196,7 @@ body:before{opacity:.24;background-size:26px 26px;mask-image:linear-gradient(to 
  <div class="info-card"><div class="card-head">◷ HISTORIAL DE LA SESIÓN</div><div id="history" class="history-empty">Todavía no giraste. Tus resultados de demo aparecerán acá.</div></div>
 </section>
 <div class="notice"><strong>ENTORNO DE DEMOSTRACIÓN.</strong> Los WLD mostrados son créditos ficticios solo para probar la interfaz. No se conecta una wallet, no se reciben ni envían criptomonedas y no hay depósitos, retiros ni premios con valor real.</div>
-<footer><div class="footer-brand">ALEXUS CASINO</div>NEON ROYALE · EXPERIENCIA VISUAL DEMO · © 2026</footer>
+<footer><div class="footer-brand">ALEXUS CASINO</div>PRISM ARCADE · EXPERIENCIA VISUAL DEMO · © 2026</footer>
 </div>
 <script>
 (()=> {
