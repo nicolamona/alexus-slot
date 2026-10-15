@@ -1,235 +1,93 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#080b12">
-<meta name="description" content="Alexus Casino — experiencia de tragamonedas futurista en modo demo.">
-<title>Alexus | Prism Arcade</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f2f0e9"><meta name="description" content="Alexus Prism Arcade — juego visual en modo demo.">
+<title>ALEXUS® — PRISM ARCADE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{color-scheme:dark;--bg:#08080f;--panel:#11111d;--panel2:#171728;--gold:#f5ce76;--gold2:#fff0b7;--violet:#9c70ff;--cyan:#70f2e2;--muted:#9b9bb4;--line:#ffffff13;--green:#7bf5ba}
-*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;color:#f8f6ff;font-family:"Space Grotesk",system-ui,sans-serif;background:radial-gradient(ellipse at 50% -20%,#35205d 0,transparent 48%),radial-gradient(ellipse at 0% 45%,#152a43 0,transparent 34%),#08080f;min-height:100vh;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:38px 38px;mask-image:linear-gradient(to bottom,black,transparent 80%)}
-button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--cyan);outline-offset:4px}.app{max-width:1160px;margin:auto;padding:22px 22px 40px;position:relative}
-.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:6px 0 25px;border-bottom:1px solid var(--line)}
-.brand{display:flex;align-items:center;gap:12px}.brandmark{width:46px;height:46px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,#fff0b7,#c28c37 48%,#7046b8);box-shadow:0 0 28px #e4b45130;color:#17101f;font-family:Orbitron;font-weight:800;font-size:22px;transform:rotate(-4deg)}.brandname{font:800 18px Orbitron,sans-serif;letter-spacing:1.5px}.brandname span{color:var(--gold)}.brandtag{font-size:10px;letter-spacing:3px;color:var(--muted);margin-top:5px}
-.top-right{display:flex;align-items:center;gap:10px}.demo-pill,.online-pill{border:1px solid #ffffff1a;border-radius:99px;padding:9px 12px;font-size:11px;letter-spacing:.8px;color:#d9d5eb;background:#ffffff07;white-space:nowrap}.demo-pill{border-color:#f5ce7645;color:var(--gold2)}.online-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);margin-right:7px}
-.hero{text-align:center;padding:42px 0 24px}.eyebrow{font:600 10px Orbitron;letter-spacing:4px;color:var(--cyan);text-transform:uppercase}.hero h1{font:800 clamp(30px,6vw,58px)/1.1 Orbitron,sans-serif;letter-spacing:-2px;margin:14px 0 12px}.hero h1 .shine{background:linear-gradient(100deg,#fff5d4 0%,#f5ce76 38%,#c2a2ff 75%,#70f2e2 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{margin:0 auto;color:#aaa8c2;max-width:530px;font-size:14px;line-height:1.7}
-.dashboard{display:grid;grid-template-columns:1fr 1.8fr 1fr;gap:14px;margin:22px 0}.stat{background:linear-gradient(145deg,#171726e8,#0f0f19e8);border:1px solid var(--line);border-radius:18px;padding:17px 18px;min-width:0;box-shadow:inset 0 1px #ffffff08}.stat-label{color:var(--muted);font-size:10px;letter-spacing:1.6px;text-transform:uppercase}.stat-value{font:700 clamp(16px,2.5vw,23px) Orbitron;margin-top:10px;white-space:nowrap}.stat-value small{font:500 10px "Space Grotesk";color:var(--gold);letter-spacing:1px}.stat-sub{font-size:11px;color:#77768f;margin-top:7px}
-.game-shell{position:relative;max-width:820px;margin:0 auto;border:1px solid #d6b56c50;border-radius:26px;padding:1px;background:linear-gradient(135deg,#f8d98b8c,#7f59bd70 40%,#70f2e255 70%,#f5ce7660);box-shadow:0 20px 80px #0009,0 0 60px #9261f41b}
-.game-inner{background:linear-gradient(160deg,#171522,#0d0c16 55%,#171022);border-radius:25px;padding:25px 26px 24px;overflow:hidden;position:relative}.game-inner:before{content:"";position:absolute;top:-150px;left:20%;width:60%;height:220px;background:#8b5cf622;filter:blur(60px);pointer-events:none}
-.game-head{display:flex;align-items:center;justify-content:space-between;gap:12px;position:relative}.game-title{font:700 13px Orbitron;letter-spacing:1.7px}.game-title span{color:var(--gold)}.jackpot{color:var(--gold2);font:600 10px Orbitron;letter-spacing:1px;border:1px solid #f5ce763b;background:#f5ce760b;border-radius:8px;padding:9px 11px;white-space:nowrap}
-.machine{margin:24px auto 18px;max-width:650px;padding:12px;border-radius:20px;background:linear-gradient(135deg,#b88a42,#4c356d 45%,#3d9a9a 70%,#d6b56c);box-shadow:0 14px 35px #0009;position:relative}.machine:before{content:"";position:absolute;inset:3px;border-radius:17px;border:1px solid #fff5d77a;pointer-events:none}.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:12px;border-radius:12px;background:radial-gradient(ellipse at top,#2a2743,#090911 75%);box-shadow:inset 0 4px 16px #000c}
-.reel{height:clamp(90px,15vw,132px);display:grid;place-items:center;border-radius:11px;background:linear-gradient(180deg,#f6f2ff,#c9c3db 50%,#f5f0ff);box-shadow:inset 0 0 0 2px #fff9,inset 0 0 22px #5e4e8b55,0 3px 8px #0008;position:relative;overflow:hidden}.reel:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#fff9,transparent 23%,transparent 75%,#b9a9e544);pointer-events:none}.symbol{font-size:clamp(42px,8vw,68px);filter:drop-shadow(0 5px 2px #2a1a3a35);user-select:none}.reel.spinning .symbol{animation:blurSpin .12s linear infinite}@keyframes blurSpin{0%{transform:translateY(-9px);filter:blur(2px)}100%{transform:translateY(9px);filter:blur(1px)}}
-.machine-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 4px 0;color:#f8e6b9;font:600 9px Orbitron;letter-spacing:1.7px}
-.controls{display:grid;grid-template-columns:1fr 1.35fr;gap:12px;max-width:650px;margin:0 auto}.betbox{border:1px solid var(--line);background:#ffffff06;border-radius:14px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:10px}.bet-label{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}.bet-number{font:700 17px Orbitron;margin-top:5px}.stepper{display:flex;gap:6px}.stepper button{width:30px;height:30px;border-radius:8px;border:1px solid #ffffff20;background:#ffffff0a;color:#fff;font-size:17px}.spin-btn{border:0;border-radius:14px;padding:15px;background:linear-gradient(105deg,#f9e2a0,#d8a54b 48%,#f3d88c);color:#201629;font:800 13px Orbitron;letter-spacing:1.4px;box-shadow:0 7px 24px #d8a54b26;transition:transform .18s,filter .18s}.spin-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.spin-btn:disabled{opacity:.55;cursor:wait;transform:none}.result{min-height:26px;text-align:center;padding-top:16px;color:#c4bfd8;font-size:12px}.result.win{color:var(--gold2);text-shadow:0 0 20px #f5ce7655}.result.loss{color:#b6b1c9}
-.below{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px auto 0;max-width:820px}.info-card{border:1px solid var(--line);border-radius:18px;padding:18px 20px;background:#ffffff05}.card-head{font:600 10px Orbitron;letter-spacing:1.5px;color:#d9d2ef;margin-bottom:12px}.payline{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid #ffffff0b;font-size:12px;color:#b8b4ce}.payline:last-child{border-bottom:0}.payline strong{color:var(--gold2);font-weight:600}.history-empty{font-size:12px;line-height:1.7;color:#89869f}.history-item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #ffffff0b;font-size:11px;color:#b8b4ce}.history-item strong{color:var(--green)}.history-item strong.down{color:#e5a0b3}
-.notice{max-width:820px;margin:16px auto 0;padding:12px 15px;border:1px solid #70f2e226;background:#70f2e208;border-radius:12px;color:#9bafbd;font-size:10px;line-height:1.6;text-align:center}.notice strong{color:var(--cyan)}footer{text-align:center;color:#69677e;font-size:10px;letter-spacing:.5px;padding:26px 0 0}.footer-brand{font:700 10px Orbitron;color:#9d92bb;letter-spacing:2px;margin-bottom:8px}
-@media(max-width:680px){.app{padding:14px 13px 28px}.topbar{padding-bottom:17px}.brandmark{width:40px;height:40px}.brandname{font-size:14px}.brandtag{font-size:8px;letter-spacing:2px}.online-pill{display:none}.hero{padding:32px 0 15px}.hero h1{letter-spacing:-1.4px}.hero p{font-size:12px}.dashboard{grid-template-columns:1fr 1fr;gap:9px;margin:17px 0}.stat{padding:13px}.stat:nth-child(3){grid-column:1/-1}.stat-value{font-size:18px}.game-inner{padding:18px 13px 18px}.game-head{align-items:flex-start}.game-title{font-size:11px}.jackpot{font-size:8px;padding:8px}.machine{margin:18px auto 15px;padding:8px}.reels{gap:6px;padding:8px}.reel{height:100px}.symbol{font-size:48px}.controls{grid-template-columns:1fr;gap:9px}.spin-btn{min-height:52px}.below{grid-template-columns:1fr;gap:10px}.info-card{padding:15px 16px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-
-/* POSTMODERN FUTURE SKIN */
-:root{--bg:#08080d;--panel:#11111a;--panel2:#1a1925;--gold:#d7ff3f;--gold2:#f0ffb5;--violet:#a879ff;--cyan:#5ef5dc;--muted:#a2a0b5;--line:#ffffff20;--green:#d7ff3f}
-body{background:radial-gradient(ellipse at 85% 0%,#4d287955,transparent 36%),radial-gradient(ellipse at 0% 60%,#165e5a30,transparent 35%),linear-gradient(135deg,#08080d,#11101a 52%,#08080d)}
-body:before{opacity:.24;background-size:26px 26px;mask-image:linear-gradient(to bottom,black,transparent 90%)}
-.brandmark{border-radius:4px;transform:rotate(-7deg);background:linear-gradient(135deg,#eaff7a,#a879ff);box-shadow:6px 6px 0 #5ef5dc;color:#0b0b10}
-.brandname{letter-spacing:2.5px}.brandname span{color:var(--gold)}
-.demo-pill{border-radius:3px;border-color:#d7ff3f70;color:var(--gold2);background:#d7ff3f0b}
-.hero{text-align:left;max-width:820px;margin:0 auto;padding-top:48px}
-.hero .eyebrow{display:inline-block;border-left:3px solid var(--cyan);padding:7px 12px;background:#5ef5dc0b;letter-spacing:3px}
-.hero h1{font-size:clamp(34px,7vw,72px);line-height:1.02;letter-spacing:-3px;text-transform:uppercase;margin-top:19px}
-.hero h1 .shine{background:linear-gradient(105deg,#f7f5ff 0%,#d7ff3f 45%,#a879ff 75%,#5ef5dc 100%);-webkit-background-clip:text;background-clip:text}
-.hero p{margin:0;max-width:560px}
-.stat,.info-card{border-radius:5px;background:linear-gradient(145deg,#181722ee,#0d0d14ee);box-shadow:5px 5px 0 #a879ff22,inset 0 1px #ffffff12}
-.stat:nth-child(2){border-color:#d7ff3f50}.stat-value{letter-spacing:-1px}
-.game-shell{border-radius:5px;background:linear-gradient(125deg,#d7ff3f,#a879ff 45%,#5ef5dc);box-shadow:12px 12px 0 #a879ff1e,0 25px 90px #000b}
-.game-inner{border-radius:4px;background:linear-gradient(145deg,#191722,#0a0a10 62%,#171022)}
-.game-title{letter-spacing:2px}.jackpot{border-radius:3px;border-color:#d7ff3f65;color:var(--gold2)}
-.machine{border-radius:5px;background:linear-gradient(125deg,#d7ff3f,#a879ff 46%,#5ef5dc);box-shadow:8px 8px 0 #0008}
-.machine:before{border-radius:3px}
-.reels{border-radius:3px;background:linear-gradient(130deg,#28233d,#08080d)}
-.reel{border-radius:4px;box-shadow:inset 0 0 0 2px #fff9,0 4px 0 #a879ff}
-.betbox{border-radius:4px;border-color:#ffffff26}.stepper button{border-radius:3px}
-.spin-btn{border-radius:4px;background:linear-gradient(105deg,#eaff7a,#d7ff3f);box-shadow:5px 5px 0 #a879ff;color:#11110e}
-.spin-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 #a879ff}
-.info-card{border-radius:5px}.notice{border-radius:4px;border-color:#5ef5dc44;background:#5ef5dc09}
-@media(max-width:680px){.hero{text-align:left;padding-top:32px}.hero h1{letter-spacing:-1.8px}}
-
-
-/* ALEXUS // PRISM ARCADE — visual overhaul */
-:root{color-scheme:dark;--bg:#070910;--panel:#101522;--panel2:#171e2d;--gold:#d5ff55;--gold2:#efffc1;--violet:#9b8cff;--cyan:#5cf2e3;--muted:#9aa6bd;--line:#aab8d522;--green:#d5ff55}
-html{background:#070910}
-body{font-family:"Space Grotesk",system-ui,sans-serif;background:radial-gradient(ellipse at 50% -15%,#30316a 0%,transparent 43%),radial-gradient(ellipse at 100% 40%,#125d6440 0%,transparent 32%),radial-gradient(ellipse at 0% 75%,#7d4eff20 0%,transparent 35%),#070910;color:#f6f7ff}
-body:before{opacity:.18;background-image:linear-gradient(#a8b5ff0a 1px,transparent 1px),linear-gradient(90deg,#a8b5ff0a 1px,transparent 1px);background-size:34px 34px}
-.app{max-width:1080px;padding-top:25px}
-.topbar{border-bottom:1px solid #b4c0ff20;padding-bottom:21px}
-.brandmark{width:48px;height:48px;border-radius:15px;transform:none;background:linear-gradient(145deg,#e8ff9b,#c8f94d 44%,#8c7bff);box-shadow:0 0 0 5px #cfff5010,0 9px 28px #8c7bff35;color:#10131c;font-size:21px}
-.brandname{font-size:17px;letter-spacing:2px}.brandname span{color:var(--gold)}
-.brandtag{letter-spacing:2.8px;color:#8995b2}
-.demo-pill{border:1px solid #d5ff5550;background:#d5ff550c;color:#eaffb2;border-radius:99px}
-.online-pill{border-radius:99px;background:#ffffff06}
-.hero{text-align:center;max-width:760px;margin:auto;padding:48px 0 18px}
-.hero .eyebrow{display:inline-flex;align-items:center;gap:9px;border:1px solid #5cf2e333;background:#5cf2e30b;border-radius:99px;padding:9px 14px;letter-spacing:2.4px;color:#8df9ec}
-.hero h1{font-size:clamp(32px,6vw,62px);line-height:1.06;letter-spacing:-2.8px;margin:19px 0 13px}
-.hero h1 .shine{background:linear-gradient(100deg,#f8faff 5%,#d5ff55 43%,#8b9aff 72%,#5cf2e3);-webkit-background-clip:text;background-clip:text}
-.hero p{font-size:14px;color:#a8b1c8;max-width:540px}
-.dashboard{gap:12px;margin:25px 0}
-.stat{position:relative;overflow:hidden;border-radius:17px;border:1px solid #aab8d522;background:linear-gradient(145deg,#171d2beF,#0d111bee);box-shadow:0 12px 35px #0002,inset 0 1px #ffffff0b;padding:18px 19px}
-.stat:after{content:"";position:absolute;right:-35px;top:-55px;width:110px;height:110px;border-radius:50%;background:#8c7bff13;filter:blur(4px);pointer-events:none}
-.stat:nth-child(2){border-color:#d5ff5545;background:linear-gradient(145deg,#1c241cee,#0d1319ee)}
-.stat-label{letter-spacing:1.4px;color:#a0abc2}
-.stat-value{font-size:clamp(16px,2.4vw,23px);letter-spacing:-.7px}
-.stat-value small{color:#d5ff55;font-size:10px}
-.game-shell{max-width:820px;border-radius:27px;padding:1px;background:linear-gradient(135deg,#e5ff8b,#6c74ff 35%,#5cf2e3 68%,#8b70ff);box-shadow:0 28px 90px #0008,0 0 65px #7c70ff16}
-.game-inner{border-radius:26px;padding:25px 27px 22px;background:radial-gradient(ellipse at 50% 0%,#292846 0%,transparent 58%),linear-gradient(155deg,#141a29,#0a0e17 65%,#11101e)}
-.game-inner:before{top:-150px;left:25%;width:50%;height:220px;background:#5cf2e315;filter:blur(65px)}
-.game-title{font-size:12px;letter-spacing:2px;color:#f0f2ff}
-.game-title span{color:#d5ff55}
-.jackpot{border:1px solid #d5ff5550;border-radius:99px;background:#d5ff550c;color:#eaffb4;font-size:9px;letter-spacing:1.1px}
-.machine{max-width:660px;margin:25px auto 19px;padding:9px;border-radius:23px;background:linear-gradient(135deg,#d5ff55,#8e80ff 38%,#5cf2e3 73%,#b7a5ff);box-shadow:0 18px 45px #0009,0 0 30px #8e80ff16}
-.machine:before{inset:3px;border-radius:20px;border:1px solid #ffffff8a}
-.reels{gap:11px;padding:13px;border-radius:17px;background:linear-gradient(160deg,#1d2438,#080b12);box-shadow:inset 0 8px 22px #000b,inset 0 0 0 1px #ffffff0b}
-.reel{height:clamp(98px,16vw,140px);border-radius:14px;background:linear-gradient(160deg,#f9fbff,#dbe4f3 48%,#aab8d3);box-shadow:inset 0 0 0 1px #fff, inset 0 -10px 22px #7784a733,0 7px 0 #6f64b4,0 12px 18px #0007;transition:transform .2s}
-.reel:after{background:linear-gradient(180deg,#ffffffd9,transparent 19%,transparent 76%,#8c9cbe55)}
-.symbol{font-size:clamp(43px,8vw,70px);filter:drop-shadow(0 7px 3px #18203945);transform:translateY(-1px)}
-.reel.spinning .symbol{animation:prismRoll .11s linear infinite}
-@keyframes prismRoll{0%{transform:translateY(-15px) scale(.94);filter:blur(3px)}100%{transform:translateY(15px) scale(1.02);filter:blur(1px)}}
-.machine-foot{padding:12px 8px 3px;color:#d7e2ff;font-size:9px;letter-spacing:2px}
-.controls{gap:13px}
-.betbox{border-radius:14px;border:1px solid #aab8d52c;background:linear-gradient(145deg,#ffffff09,#ffffff03);padding:13px 16px}
-.bet-label{color:#a5afc6;letter-spacing:1.2px}
-.bet-number{color:#f7f8ff;font-size:18px}
-.stepper button{width:34px;height:34px;border-radius:10px;border:1px solid #aab8d538;background:#ffffff0a;color:#eaf0ff;transition:background .15s,transform .15s}
-.stepper button:hover{background:#8c80ff2c;transform:translateY(-1px)}
-.spin-btn{position:relative;overflow:hidden;border:1px solid #efffc1;border-radius:14px;padding:16px;background:linear-gradient(110deg,#eaff9b,#d5ff55 52%,#a8ef63);color:#10151a;font-size:13px;letter-spacing:1.6px;box-shadow:0 8px 0 #647d2a,0 14px 28px #a7ed4a20;transition:transform .16s,box-shadow .16s,filter .16s}
-.spin-btn:before{content:"";position:absolute;top:-60%;left:-30%;width:25%;height:220%;transform:rotate(25deg);background:#ffffff80;filter:blur(8px);transition:left .45s}
-.spin-btn:hover{transform:translateY(-2px);box-shadow:0 10px 0 #647d2a,0 20px 32px #a7ed4a27;filter:brightness(1.04)}
-.spin-btn:hover:before{left:115%}
-.spin-btn:active{transform:translateY(3px);box-shadow:0 4px 0 #647d2a}
-.spin-btn:disabled{opacity:.48;filter:grayscale(.35);box-shadow:none}
-.result{min-height:30px;padding-top:17px;color:#b9c5dc;font-size:12px;letter-spacing:.15px}
-.result.win{color:#eaffad;text-shadow:0 0 22px #d5ff5540}
-.result.loss{color:#aab4cb}
-.below{gap:13px}
-.info-card{border-radius:17px;border:1px solid #aab8d522;background:linear-gradient(145deg,#151b29eF,#0c1019ef);box-shadow:0 12px 35px #0002;padding:19px 21px}
-.card-head{color:#dce3f8;letter-spacing:1.6px}
-.payline{border-color:#ffffff0d;color:#b5bfd5;padding:9px 0}
-.payline strong{color:#eaffad}
-.history-item{border-color:#ffffff0d;color:#c4cce0}
-.history-item strong{color:#d5ff55}
-.history-item strong.down{color:#ff9eae}
-.notice{border-radius:13px;border:1px solid #5cf2e328;background:#5cf2e308;color:#9eabc2;padding:14px 18px}
-.notice strong{color:#7ef5e7}
-footer{color:#77819a}
-.footer-brand{color:#d5ff55;letter-spacing:2.5px}
-@media(max-width:680px){
- .app{padding:13px 12px 25px}
- .topbar{padding-bottom:16px}
- .brandmark{width:40px;height:40px;border-radius:13px}
- .brandname{font-size:14px;letter-spacing:1.5px}
- .brandtag{font-size:8px;letter-spacing:2px}
- .hero{padding:34px 0 12px;text-align:center}
- .hero h1{font-size:clamp(31px,9vw,47px);letter-spacing:-1.8px;margin:17px 0 11px}
- .hero p{font-size:12px;line-height:1.65;padding:0 5px}
- .dashboard{gap:8px;margin:17px 0}
- .stat{padding:13px;border-radius:13px}
- .stat-value{font-size:17px}
- .game-inner{padding:17px 11px 17px;border-radius:24px}
- .game-shell{border-radius:25px}
- .game-title{font-size:10px;letter-spacing:1.2px}
- .jackpot{font-size:8px;padding:8px 10px}
- .machine{margin:20px auto 17px;padding:7px;border-radius:18px}
- .machine:before{border-radius:15px}
- .reels{gap:6px;padding:8px;border-radius:12px}
- .reel{height:clamp(87px,25vw,112px);border-radius:10px}
- .symbol{font-size:clamp(39px,12vw,52px)}
- .machine-foot{font-size:8px;letter-spacing:1.1px;padding:10px 4px 2px}
- .controls{grid-template-columns:1fr;gap:10px}
- .betbox{padding:12px 14px}
- .spin-btn{min-height:54px}
- .below{grid-template-columns:1fr;gap:10px}
- .info-card{padding:16px;border-radius:14px}
+:root{--paper:#f0efe8;--ink:#171815;--acid:#d8ff3e;--blue:#4d46ff;--orange:#ff5b35;--muted:#777970;--line:#17181525}
+*{box-sizing:border-box}html{background:var(--paper);color:var(--ink)}body{margin:0;font-family:"Space Grotesk",sans-serif;background:var(--paper);min-height:100vh;overflow-x:hidden}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.app{max-width:1440px;margin:auto;padding:0 34px 38px}
+.topbar{height:84px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--ink);gap:15px}
+.brand{display:flex;align-items:center;gap:13px}.brandmark{width:42px;height:42px;display:grid;place-items:center;background:var(--acid);border:2px solid var(--ink);font-size:24px;font-weight:700;transform:rotate(-5deg);box-shadow:4px 4px 0 var(--ink);color:var(--ink)}
+.brandname{font-size:17px;font-weight:700;letter-spacing:-.8px}.brandname span{color:var(--blue)}.brandtag{font:10px "DM Mono",monospace;letter-spacing:1.5px;color:var(--muted);margin-top:3px}
+.top-right{display:flex;align-items:center;gap:10px}.demo-pill,.online-pill{font:10px "DM Mono",monospace;letter-spacing:1px;padding:9px 12px;border:1px solid var(--ink);text-transform:uppercase}.demo-pill{background:var(--acid)}.online-pill{background:transparent}.online-dot{display:inline-block;width:7px;height:7px;background:#21b765;border-radius:50%;margin-right:7px}
+.hero{position:relative;padding:47px 0 32px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.15fr .85fr;align-items:end;gap:30px}
+.eyebrow{font:11px "DM Mono",monospace;letter-spacing:2px;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px}.eyebrow:before{content:"";width:26px;height:3px;background:var(--orange)}
+.hero h1{font-size:clamp(52px,8.4vw,126px);font-weight:700;line-height:.82;letter-spacing:-.095em;margin:22px 0 0;text-transform:uppercase}
+.hero h1 .shine{display:block;color:var(--blue);background:none;-webkit-text-fill-color:initial}
+.hero-copy{max-width:390px;justify-self:end;padding-bottom:5px}.hero-copy p{font-size:15px;line-height:1.65;margin:0 0 20px;color:#55564f}
+.edition{display:inline-flex;gap:10px;align-items:center;background:var(--ink);color:var(--paper);padding:10px 12px;font:10px "DM Mono",monospace;letter-spacing:1px}.edition b{color:var(--acid);font-weight:500}
+.dashboard{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-bottom:2px solid var(--ink);margin:0 0 30px}
+.stat{padding:18px 20px 19px 0;border-right:1px solid var(--line);min-width:0}.stat+.stat{padding-left:20px}.stat:last-child{border:0}
+.stat-label{font:10px "DM Mono",monospace;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
+.stat-value{font-size:clamp(20px,3vw,34px);font-weight:700;letter-spacing:-1.5px;margin-top:7px;white-space:nowrap}.stat-value small{font:10px "DM Mono",monospace;color:var(--blue);letter-spacing:0}.stat-sub{font-size:11px;color:var(--muted);margin-top:4px}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:22px;align-items:stretch}
+.game-shell{min-width:0;background:var(--blue);padding:8px;position:relative;box-shadow:12px 12px 0 var(--ink)}
+.game-inner{background:#171815;color:#f0efe8;min-height:100%;padding:23px 25px 21px;position:relative;overflow:hidden}
+.game-inner:before{content:"A";position:absolute;right:-30px;top:-105px;font-size:360px;line-height:1;font-weight:700;color:#ffffff05;pointer-events:none}
+.game-head{display:flex;justify-content:space-between;align-items:start;gap:10px;position:relative;z-index:1;border-bottom:1px solid #ffffff30;padding-bottom:16px}
+.game-title{font:11px "DM Mono",monospace;letter-spacing:2px;text-transform:uppercase}.game-title span{color:var(--acid)}
+.jackpot{background:var(--acid);color:var(--ink);padding:8px 10px;font:10px "DM Mono",monospace;white-space:nowrap;transform:rotate(2deg)}
+.machine{margin:24px auto 18px;max-width:790px;padding:0;position:relative;background:transparent}
+.machine:before{content:"";position:absolute;inset:-7px;border:1px solid #ffffff25;pointer-events:none}
+.reels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;padding:0;background:transparent}
+.reel{height:clamp(130px,20vw,235px);display:grid;place-items:center;position:relative;overflow:hidden;background:var(--paper);color:var(--ink);border:0}
+.reel:nth-child(2){background:var(--acid)}.reel:nth-child(3){background:#b8b4ff}
+.reel:before{content:"";position:absolute;inset:8px;border:1px solid #17181524;pointer-events:none}
+.reel:after{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:#17181512;pointer-events:none}
+.symbol{font-size:clamp(56px,9vw,108px);filter:drop-shadow(0 9px 0 #17181512);user-select:none;position:relative;z-index:1;transition:transform .15s}
+.reel.spinning .symbol{animation:roll .1s linear infinite}
+@keyframes roll{0%{transform:translateY(-18px) rotate(-5deg);filter:blur(3px)}100%{transform:translateY(18px) rotate(5deg);filter:blur(1px)}}
+.machine-foot{display:flex;justify-content:space-between;align-items:center;padding:13px 0 0;color:#a6a79d;font:10px "DM Mono",monospace;letter-spacing:1.5px;text-transform:uppercase}
+.controls{display:grid;grid-template-columns:.8fr 1.2fr;gap:10px;max-width:790px;margin:0 auto}
+.betbox{border:1px solid #ffffff55;background:#ffffff08;padding:12px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.bet-label{font:10px "DM Mono",monospace;color:#a6a79d;letter-spacing:1px;text-transform:uppercase}.bet-number{font-size:23px;font-weight:700;margin-top:2px}
+.stepper{display:flex;gap:5px}.stepper button{width:31px;height:31px;border:1px solid #ffffff70;background:transparent;color:#f0efe8;font-size:18px}
+.spin-btn{border:0;background:var(--acid);color:var(--ink);font-weight:700;font-size:13px;letter-spacing:1.3px;text-transform:uppercase;position:relative;overflow:hidden;min-height:57px;box-shadow:5px 5px 0 var(--orange);transition:transform .16s,box-shadow .16s}
+.spin-btn:after{content:"↗";font-size:22px;position:absolute;right:17px;top:50%;transform:translateY(-50%)}.spin-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--orange)}.spin-btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--orange)}.spin-btn:disabled{opacity:.5;cursor:wait;box-shadow:none}
+.result{min-height:28px;text-align:left;padding-top:17px;color:#b6b6aa;font:12px "DM Mono",monospace}.result.win{color:var(--acid);text-shadow:none}.result.loss{color:#ff9b84}
+.side{display:flex;flex-direction:column;gap:13px}.side-card{padding:18px;border:1px solid var(--ink);background:#e6e4dc}.side-card h2{font:11px "DM Mono",monospace;letter-spacing:1.5px;text-transform:uppercase;margin:0 0 15px;display:flex;justify-content:space-between}.side-card h2 span{color:var(--blue)}
+.payline{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:12px;color:#5e6058}.payline strong{font:12px "DM Mono",monospace;color:var(--blue)}.history-empty{font-size:12px;line-height:1.7;color:var(--muted)}.history-item{display:flex;justify-content:space-between;gap:8px;padding:10px 0;border-top:1px solid var(--line);font:11px "DM Mono",monospace;color:#5e6058}.history-item strong{color:#26723d}.history-item strong.down{color:#db4d30}
+.side-note{margin-top:auto;background:var(--orange);color:var(--ink);padding:18px;font-size:13px;line-height:1.5;font-weight:600}.side-note small{display:block;font:10px "DM Mono",monospace;letter-spacing:1px;margin-bottom:10px}
+.notice{margin:28px auto 0;padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font:10px/1.7 "DM Mono",monospace;color:#73756c;text-align:left}.notice strong{color:var(--blue)}footer{display:flex;justify-content:space-between;gap:12px;padding-top:22px;font:10px "DM Mono",monospace;letter-spacing:1px;color:#777970;text-transform:uppercase}.footer-brand{font-weight:500;color:var(--ink)}
+@media(max-width:850px){.app{padding:0 20px 28px}.stage{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.side-note{grid-column:1/-1}.hero{grid-template-columns:1fr .75fr}.hero h1{font-size:clamp(54px,10vw,88px)}}
+@media(max-width:560px){.app{padding:0 15px 25px}.topbar{height:70px}.brandmark{width:36px;height:36px;font-size:20px}.brandname{font-size:14px}.brandtag{font-size:8px;letter-spacing:1px}.online-pill{display:none}.demo-pill{font-size:9px;padding:8px}
+.hero{grid-template-columns:1fr;gap:20px;padding:34px 0 24px}.hero h1{font-size:clamp(59px,17vw,90px);letter-spacing:-.09em;margin-top:17px}.hero-copy{justify-self:start}.hero-copy p{font-size:13px;margin-bottom:13px}.dashboard{margin-bottom:24px}.stat{padding:13px 8px 13px 0}.stat+.stat{padding-left:10px}.stat-label{font-size:8px;letter-spacing:.8px}.stat-value{font-size:clamp(17px,5vw,24px);letter-spacing:-1px}.stat-sub{font-size:9px}
+.game-shell{padding:5px;box-shadow:6px 6px 0 var(--ink)}.game-inner{padding:16px 11px 15px}.game-title{font-size:9px;letter-spacing:1px}.jackpot{font-size:8px;padding:7px 8px}.machine{margin:18px auto 16px}.reels{gap:5px}.reel{height:clamp(104px,31vw,155px)}.reel:before{inset:5px}.symbol{font-size:clamp(43px,13vw,68px)}.machine-foot{font-size:8px;letter-spacing:.7px}.controls{grid-template-columns:1fr;gap:9px}.betbox{padding:10px 12px}.spin-btn{min-height:56px}.side{grid-template-columns:1fr}.side-note{grid-column:auto}.side-card{padding:15px}footer{font-size:8px;flex-wrap:wrap}
 }
-@media(prefers-reduced-motion:reduce){.spin-btn,.stepper button{transition:none}.spin-btn:before{display:none}}
-
-</style>
-</head>
-<body>
-<div class="app">
-<header class="topbar">
- <div class="brand"><div class="brandmark">A</div><div><div class="brandname">ALEXUS <span>CASINO</span></div><div class="brandtag">NEON ROYALE · VOL. 01</div></div></div>
- <div class="top-right"><div class="demo-pill">✦ DEMO MODE</div><div class="online-pill"><i class="online-dot"></i> SISTEMA VISUAL</div></div>
-</header>
-<section class="hero">
- <div class="eyebrow">THE FUTURE OF PLAY</div>
- <h1>ENTER THE <span class="shine">ROYAL</span></h1>
- <p>Luces, símbolos y una experiencia de tragamonedas creada para Alexus. Explorá la demo y descubrí cada combinación.</p>
-</section>
-<section class="dashboard" aria-label="Resumen demo">
- <div class="stat"><div class="stat-label">Créditos de prueba · guardado local</div><div class="stat-value" id="balance">1.250 <small>WLD DEMO</small></div><div class="stat-sub">Saldo ficticio · sin valor real</div></div>
- <div class="stat"><div class="stat-label">Premio máximo demo</div><div class="stat-value" style="color:var(--gold2)">×25 <small>CRÉDITOS</small></div><div class="stat-sub">Combinación de tres coronas</div></div>
- <div class="stat"><div class="stat-label">Partidas de esta sesión</div><div class="stat-value" id="plays">0</div><div class="stat-sub">Guardado en este dispositivo</div></div>
-</section>
-<main class="game-shell">
- <div class="game-inner">
-  <div class="game-head"><div class="game-title">✦ <span>ALEXUS</span> NEON SLOTS</div><div class="jackpot">★ ROYAL COMBO <b>×25</b></div></div>
-  <div class="machine">
-   <div class="reels" aria-label="Rodillos de tragamonedas">
-    <div class="reel" id="reel0"><span class="symbol">💎</span></div>
-    <div class="reel" id="reel1"><span class="symbol">👑</span></div>
-    <div class="reel" id="reel2"><span class="symbol">⚡</span></div>
-   </div>
-   <div class="machine-foot"><span>✧ ALEXUS ORIGINAL ✧</span><span>LUCK IS A LIGHT</span></div>
-  </div>
-  <div class="controls">
-   <div class="betbox"><div><div class="bet-label">Apuesta de prueba</div><div class="bet-number"><span id="bet">10</span> <span style="font-size:9px;color:var(--gold)">WLD DEMO</span></div></div><div class="stepper"><button id="minus" aria-label="Bajar apuesta">−</button><button id="plus" aria-label="Subir apuesta">+</button></div></div>
-   <button class="spin-btn" id="spin">GIRAR DEMO&nbsp; ↗</button>
-  </div>
-  <div class="result" id="result" aria-live="polite">Tu próxima combinación te espera.</div>
- </div>
-</main>
-<section class="below">
- <div class="info-card"><div class="card-head">✦ TABLA DE COMBINACIONES</div><div class="payline"><span>👑 👑 👑 &nbsp; Corona real</span><strong>×25</strong></div><div class="payline"><span>💎 💎 💎 &nbsp; Diamantes</span><strong>×12</strong></div><div class="payline"><span>⚡ ⚡ ⚡ &nbsp; Energía</span><strong>×8</strong></div><div class="payline"><span>🌙 🌙 🌙 &nbsp; Eclipse</span><strong>×5</strong></div><div class="payline"><span>Dos símbolos iguales</span><strong>×2</strong></div></div>
- <div class="info-card"><div class="card-head">◷ HISTORIAL DE LA SESIÓN</div><div id="history" class="history-empty">Todavía no giraste. Tus resultados de demo aparecerán acá.</div></div>
-</section>
-<div class="notice"><strong>ENTORNO DE DEMOSTRACIÓN.</strong> Los WLD mostrados son créditos ficticios solo para probar la interfaz. No se conecta una wallet, no se reciben ni envían criptomonedas y no hay depósitos, retiros ni premios con valor real.</div>
-<footer><div class="footer-brand">ALEXUS CASINO</div>PRISM ARCADE · EXPERIENCIA VISUAL DEMO · © 2026</footer>
-</div>
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style></head>
+<body><div class="app">
+<header class="topbar"><div class="brand"><div class="brandmark">A</div><div><div class="brandname">ALEXUS<span>®</span></div><div class="brandtag">INTERACTIVE ART / 001</div></div></div><div class="top-right"><div class="online-pill"><i class="online-dot"></i>ARCADE ONLINE</div><div class="demo-pill">DEMO MODE</div></div></header>
+<section class="hero"><div><div class="eyebrow">Digital playground · vol. 01</div><h1>BREAK<br>THE <span class="shine">PATTERN.</span></h1></div><div class="hero-copy"><p>Una experiencia de arcade experimental. Formas audaces, color eléctrico y movimiento en cada giro.</p><div class="edition"><b>●</b> PRISM ENGINE <span>/</span> BUILD 026</div></div></section>
+<section class="dashboard"><div class="stat"><div class="stat-label">Créditos demo</div><div class="stat-value" id="balance">1,250 <small>WLD DEMO</small></div><div class="stat-sub">Tu progreso guardado en este dispositivo</div></div><div class="stat"><div class="stat-label">Modo de juego</div><div class="stat-value">PRISM <small>01</small></div><div class="stat-sub">Arcade visual · entorno de prueba</div></div><div class="stat"><div class="stat-label">Sesiones iniciadas</div><div class="stat-value" id="plays">0</div><div class="stat-sub">Tu actividad de esta sesión guardada</div></div></section>
+<section class="stage"><div class="game-shell"><div class="game-inner"><div class="game-head"><div class="game-title">ALEXUS / <span>PRISM MACHINE</span><br><span style="color:#a6a79d;font-size:9px;display:inline-block;margin-top:7px">THREE REELS · VISUAL ARCADE</span></div><div class="jackpot">LIVE / DEMO</div></div>
+<div class="machine"><div class="reels"><div class="reel" id="reel0"><span class="symbol">👑</span></div><div class="reel" id="reel1"><span class="symbol">💎</span></div><div class="reel" id="reel2"><span class="symbol">⚡</span></div></div><div class="machine-foot"><span>✳ Prism sequence</span><span>NO. 001 — 003</span></div></div>
+<div class="controls"><div class="betbox"><div><div class="bet-label">Créditos demo / ronda</div><div class="bet-number" id="bet">10</div></div><div class="stepper"><button id="minus" aria-label="Reducir créditos">−</button><button id="plus" aria-label="Aumentar créditos">+</button></div></div><button class="spin-btn" id="spin">Iniciar secuencia</button></div><div class="result" id="result" aria-live="polite">SISTEMA LISTO — INICIÁ UNA SECUENCIA DEMO.</div></div></div>
+<aside class="side"><div class="side-card"><h2>Combinaciones <span>↗</span></h2><div class="payline"><span>👑 👑 👑 &nbsp; Crown</span><strong>×25</strong></div><div class="payline"><span>💎 💎 💎 &nbsp; Crystal</span><strong>×12</strong></div><div class="payline"><span>⚡ ⚡ ⚡ &nbsp; Pulse</span><strong>×8</strong></div><div class="payline"><span>🌙 🌙 🌙 &nbsp; Eclipse</span><strong>×5</strong></div><div class="payline"><span>Dos símbolos iguales</span><strong>×2</strong></div></div><div class="side-card"><h2>Registro local <span>◷</span></h2><div id="history" class="history-empty">Todavía no hay resultados. Las secuencias demo aparecerán acá.</div></div><div class="side-note"><small>NOTE / 001</small>Un laboratorio visual de color, forma y movimiento. Tu progreso se conserva localmente en este navegador.</div></aside></section>
+<div class="notice"><strong>ENTORNO DE DEMOSTRACIÓN.</strong> Los créditos son ficticios y solo sirven para probar la interfaz. No hay conexión a wallets, depósitos, retiros ni premios con valor real.</div>
+<footer><div class="footer-brand">ALEXUS® — PRISM ARCADE</div><div>INTERACTIVE ART / 2026 <span>·</span> BUILT FOR MOBILE</div></footer></div>
 <script>
 (()=> {
  const symbols=["👑","💎","⚡","🌙","🍀","🔮","⭐"];
- const weights=[1,2,3,3,4,4,5];
  const values={"👑":25,"💎":12,"⚡":8,"🌙":5};
  const SAVE_KEY="alexus_neon_royale_v1";
- let balance=1250, bet=10, plays=0, busy=false, history=[];
+ let balance=1250,bet=10,plays=0,busy=false,history=[];
  try{const saved=JSON.parse(localStorage.getItem(SAVE_KEY)||"null");if(saved&&saved.version===1){if(Number.isFinite(saved.balance)&&saved.balance>=0)balance=saved.balance;if(Number.isFinite(saved.bet))bet=Math.max(10,Math.min(100,saved.bet));if(Number.isFinite(saved.plays)&&saved.plays>=0)plays=saved.plays;}}catch(_){}
  function saveProgress(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({version:1,balance,bet,plays}));}catch(_){}}
- const $=id=>document.getElementById(id);
- const format=n=>n.toLocaleString("es-AR");
- const draw=()=>symbols[Math.floor(Math.random()*symbols.length)];
+ const $=id=>document.getElementById(id);const format=n=>n.toLocaleString("es-AR");const draw=()=>symbols[Math.floor(Math.random()*symbols.length)];
  function paintBalance(){$("balance").innerHTML=format(balance)+' <small>WLD DEMO</small>';$("bet").textContent=bet;$("plays").textContent=plays;$("minus").disabled=busy||bet<=10;$("plus").disabled=busy||bet>=100;$("spin").disabled=busy||balance<bet;saveProgress();}
- $("minus").addEventListener("click",()=>{if(!busy)bet=Math.max(10,bet-10);paintBalance()});
- $("plus").addEventListener("click",()=>{if(!busy)bet=Math.min(100,bet+10);paintBalance()});
+ $("minus").addEventListener("click",()=>{if(!busy)bet=Math.max(10,bet-10);paintBalance()});$("plus").addEventListener("click",()=>{if(!busy)bet=Math.min(100,bet+10);paintBalance()});
  function outcome(a){if(a[0]===a[1]&&a[1]===a[2])return values[a[0]]||3;if(a[0]===a[1]||a[1]===a[2]||a[0]===a[2])return 2;return 0}
- function addHistory(a,delta){history.unshift({symbols:a.join(" "),delta});history=history.slice(0,5);$("history").innerHTML=history.map(h=>'<div class="history-item"><span>'+h.symbols+'</span><strong class="'+(h.delta<0?'down':'')+'">'+(h.delta>0?'+':'')+format(h.delta)+' WLD DEMO</strong></div>').join("")}
- $("spin").addEventListener("click",()=>{
-  if(busy||balance<bet)return;
-  busy=true;balance-=bet;plays++;paintBalance();$("result").className="result";$("result").textContent="Los rodillos están en movimiento…";
-  const reels=[0,1,2].map(i=>$("reel"+i));reels.forEach(r=>r.classList.add("spinning"));
-  let ticks=0;const timer=setInterval(()=>{
-   reels.forEach(r=>r.querySelector(".symbol").textContent=draw());ticks++;
-   if(ticks>=12){clearInterval(timer);const result=[draw(),draw(),draw()];reels.forEach((r,i)=>{r.classList.remove("spinning");r.querySelector(".symbol").textContent=result[i]});
-    const mult=outcome(result),win=bet*mult;balance+=win;busy=false;paintBalance();addHistory(result,win-bet);
-    if(mult){$("result").className="result win";$("result").textContent="✦ ¡COMBINACIÓN! +"+format(win)+" créditos demo ("+mult+"×).";}
-    else{$("result").className="result loss";$("result").textContent="Esta vez no hubo premio. Probá otra combinación demo."}
-   }
-  },75);
- });
- paintBalance();
+ function addHistory(a,delta){history.unshift({symbols:a.join(" "),delta});history=history.slice(0,5);$("history").innerHTML=history.map(h=>'<div class="history-item"><span>'+h.symbols+'</span><strong class="'+(h.delta<0?'down':'')+'">'+(h.delta>0?'+':'')+format(h.delta)+' DEMO</strong></div>').join("")}
+ $("spin").addEventListener("click",()=>{if(busy||balance<bet)return;busy=true;balance-=bet;plays++;paintBalance();$("result").className="result";$("result").textContent="SECUENCIA EN PROCESO…";
+ const reels=[0,1,2].map(i=>$("reel"+i));reels.forEach(r=>r.classList.add("spinning"));let ticks=0;
+ const timer=setInterval(()=>{reels.forEach(r=>r.querySelector(".symbol").textContent=draw());ticks++;if(ticks>=15){clearInterval(timer);const result=[draw(),draw(),draw()];reels.forEach((r,i)=>{r.classList.remove("spinning");r.querySelector(".symbol").textContent=result[i]});const mult=outcome(result),win=bet*mult;balance+=win;busy=false;paintBalance();addHistory(result,win-bet);
+ if(mult){$("result").className="result win";$("result").textContent="✳ SECUENCIA COMPLETADA · +"+format(win)+" CRÉDITOS DEMO ("+mult+"×)."}else{$("result").className="result loss";$("result").textContent="SECUENCIA FINALIZADA · PROBÁ OTRA COMBINACIÓN DEMO."}}},65);
+ });paintBalance();
 })();
-</script>
-</body>
-</html>
+</script></body></html>
