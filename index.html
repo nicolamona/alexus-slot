@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="theme-color" content="#080817">
+<title>Alexus Slot · FUTX ARCADE</title>
+<style>
+:root{--bg:#080817;--panel:#121329;--purple:#a855f7;--cyan:#50eaff;--gold:#ffcf70;--muted:#989ab9}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#292052 0%,#101027 38%,var(--bg) 78%);color:#fff;font-family:system-ui,-apple-system,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}
+.app{max-width:480px;margin:auto;padding:18px 16px 100px}
+.top{display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:950;letter-spacing:2px;font-size:22px}
+.logo span{color:var(--cyan)}
+.pill{font-size:10px;letter-spacing:1px;border:1px solid #55f0b655;color:#72ffd0;padding:7px 10px;border-radius:20px}
+.sub{color:var(--muted);font-size:11px;letter-spacing:3px;margin-top:3px}
+.hero{position:relative;overflow:hidden;text-align:center;margin:24px 0 18px;padding:26px 16px 24px;border:1px solid #9b72ff45;border-radius:27px;background:linear-gradient(145deg,#26204cdd,#111329f2 58%,#13243c);box-shadow:0 20px 65px #0007}
+.hero:before,.hero:after{content:"";position:absolute;width:180px;height:180px;border:1px solid #a855f725;border-radius:50%;left:calc(50% - 90px);top:25px;pointer-events:none}
+.hero:after{transform:scale(1.35);border-color:#50eaff17}
+.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:3px;font-weight:800}
+h1{font-size:31px;line-height:1.08;margin:12px 0 8px;letter-spacing:-1px}
+h1 em{font-style:normal;color:var(--gold)}
+.desc{font-size:13px;color:#bfc0de;line-height:1.5;max-width:290px;margin:0 auto}
+.orb{height:150px;display:grid;place-items:center;position:relative}
+.planet{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;font-size:55px;background:radial-gradient(circle at 30% 25%,#f7e3ff,#bd70ff 25%,#5c31c3 58%,#17153c 78%);box-shadow:0 0 30px #a855f7aa,0 0 70px #6d28d955;animation:float 4s ease-in-out infinite}
+.ring{position:absolute;width:160px;height:49px;border:2px solid #50eaffaa;border-radius:50%;transform:rotate(-22deg);box-shadow:0 0 14px #50eaff44}
+@keyframes float{50%{transform:translateY(-7px)}}
+.section{display:flex;justify-content:space-between;align-items:center;margin:25px 2px 12px}
+.section h2{font-size:15px;margin:0;letter-spacing:.4px}
+.section small{color:var(--muted);font-size:10px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.game{min-width:0;position:relative;text-align:left;padding:15px 12px;border-radius:20px;border:1px solid #ffffff15;background:linear-gradient(145deg,#1c1d3b,#101121);color:#fff;transition:.2s}
+.game.active{border-color:var(--cyan);box-shadow:0 0 22px #50eaff19}
+.art{height:110px;border-radius:14px;display:grid;place-items:center;font-size:55px;margin-bottom:13px;background:radial-gradient(circle,#54359d,#171831 68%);text-shadow:0 0 24px #cf94ff}
+.game:nth-child(2) .art{background:radial-gradient(circle,#275d83,#171831 70%)}
+.tag{display:inline-block;font-size:9px;letter-spacing:1px;color:var(--cyan);background:#50eaff12;border:1px solid #50eaff28;padding:5px 7px;border-radius:6px}
+.game h3{font-size:13px;margin:10px 0 5px}
+.game p{font-size:10px;color:var(--muted);line-height:1.4;margin:0 0 11px}
+.choose{font-size:11px;font-weight:800;color:var(--gold)}
+.machine{margin-top:20px;border:1px solid #a855f75c;border-radius:23px;padding:17px;background:linear-gradient(160deg,#1c1b39,#0f1023);box-shadow:0 18px 45px #0005}
+.machine-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.machine-head h2{font-size:15px;margin:0}
+.demo{color:#77ffcc;border:1px solid #77ffcc45;border-radius:8px;padding:5px 7px;font-size:9px;letter-spacing:1px}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:19px 0}
+.reel{height:92px;border-radius:14px;display:grid;place-items:center;font-size:44px;background:linear-gradient(180deg,#252744,#15162b);border:1px solid #ffffff19;box-shadow:inset 0 0 20px #0005}
+.reel.spin{animation:blink .14s linear infinite alternate}
+@keyframes blink{to{filter:brightness(1.7);transform:translateY(-2px)}}
+.result{text-align:center;min-height:22px;font-size:12px;color:var(--gold);font-weight:750}
+.action{width:100%;border:0;border-radius:13px;padding:15px;background:linear-gradient(100deg,#a855f7,#6366f1 55%,#36c7e8);color:white;font-weight:900;letter-spacing:1.5px;box-shadow:0 7px 25px #7c3aed44}
+.action:disabled{opacity:.55}
+.note{text-align:center;color:var(--muted);font-size:10px;line-height:1.5;margin:13px 5px 0}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#0b0b1bf2;border-top:1px solid #ffffff12;backdrop-filter:blur(16px);display:flex;justify-content:center;gap:0;z-index:5}
+.nav{width:min(480px,100%);display:flex;justify-content:space-around;padding:11px 4px calc(11px + env(safe-area-inset-bottom))}
+.nav button{background:none;border:0;color:#999bb9;font-size:10px;display:grid;gap:5px;justify-items:center}
+.nav b{font-size:19px}
+.nav button:first-child{color:var(--cyan)}
+.toast{font-size:11px;text-align:center;color:#a9ffdf;margin-top:12px}
+@media(min-width:500px){body{padding-top:15px}.app{padding-bottom:110px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top">
+  <div><div class="logo">Alexus <span>SLOTS</span></div><div class="sub">FUTX DIGITAL ARCADE</div></div>
+  <div class="pill">● MODO DEMO</div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">✦ EXPLORÁ NUEVOS UNIVERSOS ✦</div>
+  <h1>ENTRÁ EN EL<br><em>NEXO CÓSMICO</em></h1>
+  <p class="desc">Dos mundos digitales. Una experiencia visual extraordinaria.</p>
+  <div class="orb"><div class="ring"></div><div class="planet">✦</div></div>
+  <div class="tag">ARCADE · CRÉDITOS FICTICIOS</div>
+</section>
+
+<div class="section"><h2>✧ Elegí tu universo</h2><small>02 EXPERIENCIAS</small></div>
+<section class="cards">
+  <button class="game active" data-game="galaxy">
+    <div class="art">🪐</div><span class="tag">COSMIC EDITION</span>
+    <h3>FUTX GALAXY</h3>
+    <p>Un viaje entre planetas y estrellas luminosas.</p>
+    <span class="choose">EXPLORAR ↗</span>
+  </button>
+  <button class="game" data-game="gems">
+    <div class="art">💎</div><span class="tag">CRYSTAL EDITION</span>
+    <h3>GEMSTONE REALM</h3>
+    <p>Descubrí un reino de cristales de colores.</p>
+    <span class="choose">EXPLORAR ↗</span>
+  </button>
+</section>
+
+<section class="machine">
+  <div class="machine-head"><h2 id="machineTitle">🪐 FUTX GALAXY</h2><span class="demo">SIMULACIÓN</span></div>
+  <div class="reels" aria-label="Símbolos de demostración">
+    <div class="reel">🌙</div><div class="reel">⭐</div><div class="reel">🪐</div>
+  </div>
+  <div class="result" id="result">Tu aventura visual empieza acá</div>
+  <button class="action" id="spin">✦ ANIMAR SÍMBOLOS ✦</button>
+  <p class="note">Demostración visual: sin apuestas, premios económicos, compras ni conexión con los saldos de FUTX o gemas.</p>
+</section>
+<div class="toast" id="toast">Alexus · EXPERIENCIA INDEPENDIENTE</div>
+</main>
+
+<nav class="bottom"><div class="nav">
+  <button><b>⌂</b>Inicio</button>
+  <button onclick="document.querySelector('.cards').scrollIntoView({behavior:'smooth'})"><b>✧</b>Universos</button>
+  <button onclick="document.querySelector('.machine').scrollIntoView({behavior:'smooth'})"><b>◈</b>Arcade demo</button>
+</div></nav>
+
+<script>
+const symbols={
+ galaxy:["🌙","⭐","🪐","☄️","🌌","✨","🔮"],
+ gems:["💎","🔷","🔮","🟣","💠","✨","🔹"]
+};
+let game="galaxy",busy=false;
+const title=document.getElementById("machineTitle");
+const reels=[...document.querySelectorAll(".reel")];
+const result=document.getElementById("result");
+const spin=document.getElementById("spin");
+document.querySelectorAll(".game").forEach(card=>{
+ card.addEventListener("click",()=>{
+  game=card.dataset.game;
+  document.querySelectorAll(".game").forEach(c=>c.classList.toggle("active",c===card));
+  title.textContent=game==="galaxy"?"🪐 FUTX GALAXY":"💎 GEMSTONE REALM";
+  reels.forEach((r,i)=>r.textContent=symbols[game][i]);
+  result.textContent="Universo seleccionado · Modo demo";
+ });
+});
+spin.addEventListener("click",()=>{
+ if(busy)return;
+ busy=true;spin.disabled=true;
+ result.textContent="✦ Explorando el universo…";
+ reels.forEach(r=>r.classList.add("spin"));
+ let ticks=0;
+ const timer=setInterval(()=>{
+  reels.forEach(r=>r.textContent=symbols[game][Math.floor(Math.random()*symbols[game].length)]);
+  ticks++;
+  if(ticks>=13){
+   clearInterval(timer);
+   reels.forEach(r=>r.classList.remove("spin"));
+   const a=symbols[game][Math.floor(Math.random()*symbols[game].length)];
+   const b=symbols[game][Math.floor(Math.random()*symbols[game].length)];
+   const c=symbols[game][Math.floor(Math.random()*symbols[game].length)];
+   [a,b,c].forEach((s,i)=>reels[i].textContent=s);
+   result.textContent="¡Animación completada! ✨";
+   spin.disabled=false;busy=false;
+  }
+ },95);
+});
+</script>
+</body>
+</html>
